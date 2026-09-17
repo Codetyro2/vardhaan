@@ -199,14 +199,7 @@ img{max-width:100%;display:block}
   transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
 .dest-card:hover .arrow{transform:rotate(-45deg) scale(1.1);background:var(--cyan);color:#041a30}
 
-/* Full-card clickable overlay link */
-.dest-link{
-  position:absolute;
-  inset:0;
-  z-index:10;
-  border-radius:20px;
-  outline:none;
-}
+.dest-link{position:absolute;inset:0;z-index:10;border-radius:20px;outline:none}
 .dest-link:focus-visible{box-shadow:0 0 0 3px var(--cyan) inset}
 
 .slider-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
@@ -218,37 +211,43 @@ img{max-width:100%;display:block}
 /* ---------- PATH CARDS ---------- */
 .path-grid{display:grid;grid-template-columns:1.1fr 2fr;gap:35px;align-items:center}
 .path-copy p{color:var(--muted);margin:15px 0 25px}
-.path-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.path-card{padding:25px;background:#fff;border:1px solid var(--line);border-radius:18px;
+.path-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.path-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s;
-  position:relative;overflow:hidden}
-.path-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#e8f5ff,transparent);
-  opacity:0;transition:opacity .4s}
-.path-card:hover::before{opacity:1}
+  position:relative;display:block;text-decoration:none;color:inherit}
 .path-card:hover{border-color:#83c8ff;box-shadow:var(--shadow);transform:translateY(-6px)}
-.path-card>*{position:relative;z-index:2}
-.path-card .emoji{font-size:26px;display:inline-block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.path-card:hover .emoji{transform:scale(1.25) rotate(-8deg)}
-.path-card strong{display:block;font-size:17px;margin:12px 0 5px}
-.path-card span{font-size:12px;color:var(--muted)}
+.path-img{height:150px;background-size:cover;background-position:center;position:relative;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.path-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(7,29,54,.35))}
+.path-card:hover .path-img{transform:scale(1.08)}
+.path-body{padding:20px 22px 22px;position:relative;z-index:2}
+.path-card .emoji{position:absolute;top:-26px;left:20px;width:52px;height:52px;
+  border-radius:14px;background:#fff;display:grid;place-items:center;font-size:24px;
+  box-shadow:0 8px 22px rgba(2,6,23,.14);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:3}
+.path-card:hover .emoji{transform:scale(1.12) rotate(-8deg)}
+.path-card strong{display:block;font-size:17px;margin:22px 0 5px}
+.path-card span{font-size:12px;color:var(--muted);display:block}
 
 /* ---------- SERVICES ---------- */
 .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .service{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;
-  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s}
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s;
+  display:flex;flex-direction:column}
 .service:hover{transform:translateY(-9px);box-shadow:var(--shadow-lg);border-color:#83c8ff}
 .service-img{height:155px;background-size:cover;background-position:center;
   transition:transform .8s cubic-bezier(.2,.8,.2,1);position:relative}
 .service:hover .service-img{transform:scale(1.1)}
 .service-img::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 40%,rgba(7,29,54,.35))}
-.service-body{padding:22px}
+.service-body{padding:22px;display:flex;flex-direction:column;flex:1}
 .service-body h3{font-size:18px}
 .service-body ul{padding-left:17px;margin:12px 0;color:var(--muted);font-size:12px}
 .service-body ul li{margin:4px 0}
-.service-body a{font-size:12px;font-weight:800;color:var(--blue);display:inline-flex;
-  align-items:center;gap:6px;transition:gap .3s}
-.service:hover .service-body a{gap:12px}
+.service-body .learn{font-size:12px;font-weight:800;color:var(--blue);display:inline-flex;
+  align-items:center;gap:6px;transition:gap .3s;margin-top:auto}
+.service:hover .service-body .learn{gap:12px}
 
 /* ---------- PROCESS ---------- */
 .process{background:linear-gradient(120deg,#eef8ff,#fff);overflow:hidden}
@@ -259,48 +258,22 @@ img{max-width:100%;display:block}
 .process-photo::after{content:"";position:absolute;inset:0;
   background:linear-gradient(120deg,transparent 40%,rgba(8,120,232,.12))}
 
-/* --- STEPS --- */
-.steps{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  position:relative;
-}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative}
 .steps::before{content:none}
-
 .step{position:relative;transition:transform .4s}
 .step:hover{transform:translateY(-4px)}
-
-.step-num{
-  width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;
   display:grid;place-items:center;font-size:12px;font-weight:800;margin-bottom:12px;
-  position:relative;
-  z-index:2;
-  transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s;
-}
+  position:relative;z-index:2;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
 .step:hover .step-num{transform:scale(1.15) rotate(-6deg);background:var(--blue)}
 .step h3{font-size:15px;position:relative;z-index:2}
 .step p{font-size:11px;color:var(--muted);margin-top:5px;position:relative;z-index:2}
-
-/* Connector line between step 01 and step 04 */
-.step:nth-child(1)::after{
-  content:"";
-  position:absolute;
-  left:17px;
-  top:40px;
-  width:2px;
-  height:calc(100% - 22px);
-  background:linear-gradient(180deg,var(--blue),var(--cyan));
-  border-radius:2px;
-  transform-origin:top;
-  transform:scaleY(0);
-  transition:transform 1.2s cubic-bezier(.2,.8,.2,1) .3s;
-  pointer-events:none;
-  z-index:1;
-}
-.steps.active .step:nth-child(1)::after{
-  transform:scaleY(1);
-}
+.step:nth-child(1)::after{content:"";position:absolute;left:17px;top:40px;width:2px;
+  height:calc(100% - 22px);background:linear-gradient(180deg,var(--blue),var(--cyan));
+  border-radius:2px;transform-origin:top;transform:scaleY(0);
+  transition:transform 1.2s cubic-bezier(.2,.8,.2,1) .3s;pointer-events:none;z-index:1}
+.steps.active .step:nth-child(1)::after{transform:scaleY(1)}
 
 /* ---------- STORIES ---------- */
 .stories{background:linear-gradient(rgba(4,28,52,.88),rgba(4,28,52,.93)),
@@ -392,6 +365,36 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
 @keyframes ripple{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
 .wa:hover{transform:scale(1.1) rotate(-8deg)}
 
+/* ---------- LIVE NOTIFICATIONS ---------- */
+.notif-stack{position:fixed;left:22px;bottom:22px;z-index:70;
+  display:flex;flex-direction:column;gap:10px;max-width:340px;pointer-events:none}
+.notif{background:#fff;border-radius:14px;padding:12px 14px;
+  box-shadow:0 14px 40px rgba(2,6,23,.18);
+  display:flex;align-items:center;gap:12px;
+  border-left:4px solid var(--blue);
+  pointer-events:auto;
+  transform:translateX(-140%);opacity:0;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .35s;
+  position:relative}
+.notif.in{transform:translateX(0);opacity:1}
+.notif.out{transform:translateX(-140%);opacity:0}
+.notif.success{border-left-color:#20c878}
+.notif.success .notif-avatar::after{background:#20c878}
+.notif-avatar{width:42px;height:42px;border-radius:50%;background-size:cover;background-position:center;
+  flex-shrink:0;border:2px solid #e8f5ff;position:relative}
+.notif-avatar::after{content:"";position:absolute;bottom:-1px;right:-1px;
+  width:12px;height:12px;border-radius:50%;background:var(--blue);
+  border:2px solid #fff;animation:pulse 1.8s infinite}
+.notif-body{flex:1;min-width:0;overflow:hidden}
+.notif-text{font-size:12px;line-height:1.4;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.notif-text strong{font-weight:800;color:var(--navy)}
+.notif-time{font-size:10px;color:var(--muted);display:block;margin-top:2px}
+.notif-close{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  color:var(--muted);font-size:13px;flex-shrink:0;
+  transition:background .2s,color .2s}
+.notif-close:hover{background:#f1f5f9;color:var(--navy)}
+
 /* ---------- SCROLL REVEALS ---------- */
 .reveal{opacity:0;transform:translateY(35px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),
   transform .9s cubic-bezier(.2,.8,.2,1)}
@@ -406,7 +409,6 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
 .stagger.visible>*:nth-child(5){transition-delay:.45s}
 .stagger.visible>*:nth-child(6){transition-delay:.55s}
 
-/* ---------- 3D TILT ---------- */
 .tilt{transform-style:preserve-3d;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 
 /* ---------- MOBILE ---------- */
@@ -429,6 +431,7 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
   .float-card{font-size:11px;padding:10px 14px}
   .float-card.a{right:10px;top:30px}
   .float-card.b{left:10px;bottom:30px}
+  .notif-stack{left:14px;bottom:14px;max-width:calc(100vw - 100px)}
 }
 @media(max-width:560px){
   .nav{height:68px}
@@ -452,6 +455,7 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
   .cta-box{display:block}
   .cta .btn{margin-top:22px}
   .step:nth-child(1)::after{display:none}
+  .notif-text{white-space:normal}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -530,8 +534,6 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
  </div>
 
  <div class="dest-slider reveal" id="destSlider">
-
-  <!-- USA → USCIS -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
@@ -540,10 +542,9 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
       <div><b data-count="9" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
     <span class="arrow">→</span>
    </div>
-   <a class="dest-link" href="https://www.uscis.gov/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official USA immigration website (USCIS)"></a>
+   <a class="dest-link" href="https://www.uscis.gov/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official USA immigration website"></a>
   </article>
 
-  <!-- Canada → IRCC -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
@@ -552,10 +553,9 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
       <div><b data-count="4" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
     <span class="arrow">→</span>
    </div>
-   <a class="dest-link" href="https://www.canada.ca/en/immigration-refugees-citizenship.html" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Canada immigration website (IRCC)"></a>
+   <a class="dest-link" href="https://www.canada.ca/en/immigration-refugees-citizenship.html" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Canada immigration website"></a>
   </article>
 
-  <!-- Australia → Home Affairs -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
@@ -564,10 +564,9 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
       <div><b data-count="3" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
     <span class="arrow">→</span>
    </div>
-   <a class="dest-link" href="https://immi.homeaffairs.gov.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Australia immigration website (Department of Home Affairs)"></a>
+   <a class="dest-link" href="https://immi.homeaffairs.gov.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Australia immigration website"></a>
   </article>
 
-  <!-- New Zealand → INZ -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1469521669194-babb45599def?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
@@ -576,10 +575,9 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
       <div><b data-count="2" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
     <span class="arrow">→</span>
    </div>
-   <a class="dest-link" href="https://www.immigration.govt.nz/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official New Zealand immigration website (Immigration New Zealand)"></a>
+   <a class="dest-link" href="https://www.immigration.govt.nz/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official New Zealand immigration website"></a>
   </article>
 
-  <!-- UK → UKVI -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
@@ -588,9 +586,8 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
       <div><b data-count="3" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
     <span class="arrow">→</span>
    </div>
-   <a class="dest-link" href="https://www.gov.uk/browse/visas-immigration" target="_blank" rel="noopener noreferrer" aria-label="Visit the official UK immigration website (GOV.UK Visas and Immigration)"></a>
+   <a class="dest-link" href="https://www.gov.uk/browse/visas-immigration" target="_blank" rel="noopener noreferrer" aria-label="Visit the official UK immigration website"></a>
   </article>
-
  </div>
 
  <div class="slider-nav">
@@ -606,36 +603,87 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
   <p>Tell us what you're looking for, and we'll help you find the best immigration pathway for you.</p>
   <a class="btn blue magnetic" href="#contact">Take the Next Step <span class="arrow">→</span></a>
  </div>
+
  <div class="path-cards stagger reveal">
-  <div class="path-card tilt"><div class="emoji">🎓</div><strong>Study Abroad</strong><span>Get world-class education and global exposure.</span></div>
-  <div class="path-card tilt"><div class="emoji">💼</div><strong>Work Abroad</strong><span>Build your career internationally.</span></div>
-  <div class="path-card tilt"><div class="emoji">🏠</div><strong>Permanent Residency</strong><span>Settle for a better future.</span></div>
-  <div class="path-card tilt"><div class="emoji">✈️</div><strong>Visit Visa</strong><span>Explore the world with your loved ones.</span></div>
+  <a class="path-card tilt" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html" target="_blank" rel="noopener noreferrer">
+    <div class="path-img" style="background-image:url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80')"></div>
+    <div class="path-body">
+      <div class="emoji">🎓</div>
+      <strong>Study Abroad</strong>
+      <span>Get world-class education and global exposure.</span>
+    </div>
+  </a>
+  <a class="path-card tilt" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada.html" target="_blank" rel="noopener noreferrer">
+    <div class="path-img" style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80')"></div>
+    <div class="path-body">
+      <div class="emoji">💼</div>
+      <strong>Work Abroad</strong>
+      <span>Build your career internationally.</span>
+    </div>
+  </a>
+  <a class="path-card tilt" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada.html" target="_blank" rel="noopener noreferrer">
+    <div class="path-img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80')"></div>
+    <div class="path-body">
+      <div class="emoji">🏠</div>
+      <strong>Permanent Residency</strong>
+      <span>Settle for a better future.</span>
+    </div>
+  </a>
+  <a class="path-card tilt" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada.html" target="_blank" rel="noopener noreferrer">
+    <div class="path-img" style="background-image:url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=700&q=80')"></div>
+    <div class="path-body">
+      <div class="emoji">✈️</div>
+      <strong>Visit Visa</strong>
+      <span>Explore the world with your loved ones.</span>
+    </div>
+  </a>
  </div>
 </div></section>
 
+<!-- ==================== SERVICES (with Learn More links) ==================== -->
 <section class="section" id="services"><div class="container">
  <div class="section-head reveal">
   <div><div class="kicker">Our Services</div><h2>Comprehensive Immigration Services</h2></div>
   <p>From initial consultation to final approval, we provide end-to-end support for your immigration needs.</p>
  </div>
  <div class="services stagger reveal">
+
   <article class="service tilt">
-   <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=700&q=80')"></div>
-   <div class="service-body"><h3>Study Abroad</h3><ul><li>University selection</li><li>Application support</li><li>Visa assistance</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+   <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=700&q=80')"></div>
+   <div class="service-body">
+    <h3>Study Abroad</h3>
+    <ul><li>University selection</li><li>Application support</li><li>Visa assistance</li></ul>
+    <a class="learn" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html" target="_blank" rel="noopener noreferrer">Learn More <span>→</span></a>
+   </div>
   </article>
+
   <article class="service tilt">
    <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80')"></div>
-   <div class="service-body"><h3>Work Abroad</h3><ul><li>Work permits</li><li>Employer pathways</li><li>Documentation</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+   <div class="service-body">
+    <h3>Work Abroad</h3>
+    <ul><li>Work permits</li><li>Employer pathways</li><li>Documentation</li></ul>
+    <a class="learn" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada.html" target="_blank" rel="noopener noreferrer">Learn More <span>→</span></a>
+   </div>
   </article>
+
   <article class="service tilt">
    <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=700&q=80')"></div>
-   <div class="service-body"><h3>Permanent Residency</h3><ul><li>Profile assessment</li><li>Eligibility check</li><li>Application guidance</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+   <div class="service-body">
+    <h3>Permanent Residency</h3>
+    <ul><li>Profile assessment</li><li>Eligibility check</li><li>Application guidance</li></ul>
+    <a class="learn" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada.html" target="_blank" rel="noopener noreferrer">Learn More <span>→</span></a>
+   </div>
   </article>
+
   <article class="service tilt">
    <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=80')"></div>
-   <div class="service-body"><h3>Visitor Visa</h3><ul><li>Tourism visits</li><li>Family visits</li><li>Business visits</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+   <div class="service-body">
+    <h3>Visitor Visa</h3>
+    <ul><li>Tourism visits</li><li>Family visits</li><li>Business visits</li></ul>
+    <a class="learn" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada.html" target="_blank" rel="noopener noreferrer">Learn More <span>→</span></a>
+   </div>
   </article>
+
  </div>
 </div></section>
 
@@ -764,6 +812,9 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
 
 <a class="wa" href="https://wa.me/919999999999" aria-label="WhatsApp">WA</a>
 
+<!-- ==================== LIVE NOTIFICATIONS ==================== -->
+<div class="notif-stack" id="notifStack" aria-live="polite" aria-atomic="false"></div>
+
 <script>
 /* 1. SCROLL PROGRESS BAR */
 const scrollBar = document.getElementById("scrollBar");
@@ -875,11 +926,9 @@ slider.addEventListener("mousemove", e => {
   if (moved > 6) dragged = true;
   slider.scrollLeft = startScroll - (e.pageX - startX) * 1.4;
 });
-/* Prevent accidental navigation after drag */
 slider.addEventListener("click", e => {
   if (dragged){ e.preventDefault(); e.stopPropagation(); dragged = false; }
 }, true);
-
 slider.addEventListener("wheel", e => {
   if (Math.abs(e.deltaY) > Math.abs(e.deltaX)){
     e.preventDefault();
@@ -942,6 +991,64 @@ tickerTrack.innerHTML = tickerHTML + tickerHTML;
 document.querySelector(".mobile-menu")?.addEventListener("click", () => {
   document.getElementById("countries")?.scrollIntoView({ behavior:"smooth" });
 });
+
+/* ============================================================
+   14. LIVE VISITOR NOTIFICATIONS
+   Cycles through a pool of activity messages, showing one
+   every ~10 seconds. Auto-dismisses after 7 seconds.
+   Also pauses when the tab is hidden.
+============================================================ */
+const notifStack = document.getElementById("notifStack");
+
+const notifPool = [
+  { avatar: "https://i.pravatar.cc/100?img=15", name: "Arjun", text: "just applied for a Canada Study Visa", time: "Just now", type: "info" },
+  { avatar: "https://i.pravatar.cc/100?img=33", name: "Sachin", text: "visa has been approved! 🎉", time: "1 min ago", type: "success" },
+  { avatar: "https://i.pravatar.cc/100?img=45", name: "Priya", text: "is exploring Work Permit options in Canada", time: "3 min ago", type: "info" },
+  { avatar: "https://i.pravatar.cc/100?img=8",  name: "Rahul", text: "received his PR approval — congrats! 🇨🇦", time: "4 min ago", type: "success" },
+  { avatar: "https://i.pravatar.cc/100?img=23", name: "Neha", text: "booked a free consultation", time: "5 min ago", type: "info" },
+  { avatar: "https://i.pravatar.cc/100?img=52", name: "Vikram", text: "study permit just got approved! 🎓", time: "6 min ago", type: "success" },
+  { avatar: "https://i.pravatar.cc/100?img=29", name: "Ananya", text: "is checking eligibility for Canada PR", time: "7 min ago", type: "info" },
+  { avatar: "https://i.pravatar.cc/100?img=6",  name: "Karan", text: "submitted his Visitor Visa application", time: "8 min ago", type: "info" },
+  { avatar: "https://i.pravatar.cc/100?img=41", name: "Riya", text: "visa was approved in just 21 days! ✨", time: "9 min ago", type: "success" }
+];
+
+let notifIndex = 0;
+
+function showNotif(data){
+  const notif = document.createElement("div");
+  notif.className = "notif" + (data.type === "success" ? " success" : "");
+  notif.innerHTML = `
+    <div class="notif-avatar" style="background-image:url('${data.avatar}')"></div>
+    <div class="notif-body">
+      <div class="notif-text"><strong>${data.name}</strong> ${data.text}</div>
+      <span class="notif-time">${data.time}</span>
+    </div>
+    <button class="notif-close" aria-label="Dismiss">✕</button>
+  `;
+  notifStack.appendChild(notif);
+  requestAnimationFrame(() => notif.classList.add("in"));
+
+  const close = notif.querySelector(".notif-close");
+  close.addEventListener("click", () => removeNotif(notif));
+
+  setTimeout(() => removeNotif(notif), 7000);
+}
+
+function removeNotif(notif){
+  if (!notif.parentElement) return;
+  notif.classList.remove("in");
+  notif.classList.add("out");
+  setTimeout(() => notif.remove(), 500);
+}
+
+/* First notification after 5s, then one every ~11s */
+setTimeout(() => {
+  showNotif(notifPool[notifIndex++ % notifPool.length]);
+  setInterval(() => {
+    if (document.hidden) return;         // pause when tab is hidden
+    showNotif(notifPool[notifIndex++ % notifPool.length]);
+  }, 11000);
+}, 5000);
 </script>
 </body>
 </html>
