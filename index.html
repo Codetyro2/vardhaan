@@ -180,7 +180,8 @@ img{max-width:100%;display:block}
 .dest-slider::-webkit-scrollbar{display:none}
 .dest-card{scroll-snap-align:start;min-height:355px;border-radius:20px;overflow:hidden;
   position:relative;background:#0d2c4a;color:#fff;box-shadow:0 12px 35px rgba(7,29,54,.12);
-  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;transform-style:preserve-3d}
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;transform-style:preserve-3d;
+  cursor:pointer}
 .dest-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg)}
 .dest-img{height:180px;background-size:cover;background-position:center;
   transition:transform .8s cubic-bezier(.2,.8,.2,1)}
@@ -197,6 +198,16 @@ img{max-width:100%;display:block}
   background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
 .dest-card:hover .arrow{transform:rotate(-45deg) scale(1.1);background:var(--cyan);color:#041a30}
+
+/* Full-card clickable overlay link */
+.dest-link{
+  position:absolute;
+  inset:0;
+  z-index:10;
+  border-radius:20px;
+  outline:none;
+}
+.dest-link:focus-visible{box-shadow:0 0 0 3px var(--cyan) inset}
 
 .slider-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
 .slider-nav button{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--line);
@@ -255,7 +266,6 @@ img{max-width:100%;display:block}
   gap:24px;
   position:relative;
 }
-/* Remove the old wrapper pseudo-element line entirely */
 .steps::before{content:none}
 
 .step{position:relative;transition:transform .4s}
@@ -272,7 +282,7 @@ img{max-width:100%;display:block}
 .step h3{font-size:15px;position:relative;z-index:2}
 .step p{font-size:11px;color:var(--muted);margin-top:5px;position:relative;z-index:2}
 
-/* Connector line between step 01 (top-left) and step 04 (bottom-left) */
+/* Connector line between step 01 and step 04 */
 .step:nth-child(1)::after{
   content:"";
   position:absolute;
@@ -520,55 +530,67 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
  </div>
 
  <div class="dest-slider reveal" id="destSlider">
+
+  <!-- USA → USCIS -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
     <span class="flag">🇺🇸</span><h3>USA</h3><p>Study · Work · PR · Visit</p>
     <div class="stats"><div><b data-count="98" data-suffix="%">0%</b><span>Visa success rate</span></div>
       <div><b data-count="9" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
-    <a class="arrow" href="#contact">→</a>
+    <span class="arrow">→</span>
    </div>
+   <a class="dest-link" href="https://www.uscis.gov/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official USA immigration website (USCIS)"></a>
   </article>
 
+  <!-- Canada → IRCC -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
     <span class="flag">🇨🇦</span><h3>Canada</h3><p>Study · Work · PR · Visit</p>
     <div class="stats"><div><b data-count="96" data-suffix="%">0%</b><span>Visa success rate</span></div>
       <div><b data-count="4" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
-    <a class="arrow" href="#contact">→</a>
+    <span class="arrow">→</span>
    </div>
+   <a class="dest-link" href="https://www.canada.ca/en/immigration-refugees-citizenship.html" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Canada immigration website (IRCC)"></a>
   </article>
 
+  <!-- Australia → Home Affairs -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
     <span class="flag">🇦🇺</span><h3>Australia</h3><p>Study · Work · PR · Visit</p>
     <div class="stats"><div><b data-count="94" data-suffix="%">0%</b><span>Visa success rate</span></div>
       <div><b data-count="3" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
-    <a class="arrow" href="#contact">→</a>
+    <span class="arrow">→</span>
    </div>
+   <a class="dest-link" href="https://immi.homeaffairs.gov.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Australia immigration website (Department of Home Affairs)"></a>
   </article>
 
+  <!-- New Zealand → INZ -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1469521669194-babb45599def?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
     <span class="flag">🇳🇿</span><h3>New Zealand</h3><p>Study · Work · PR · Visit</p>
     <div class="stats"><div><b data-count="92" data-suffix="%">0%</b><span>Visa success rate</span></div>
       <div><b data-count="2" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
-    <a class="arrow" href="#contact">→</a>
+    <span class="arrow">→</span>
    </div>
+   <a class="dest-link" href="https://www.immigration.govt.nz/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official New Zealand immigration website (Immigration New Zealand)"></a>
   </article>
 
+  <!-- UK → UKVI -->
   <article class="dest-card tilt">
    <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80')"></div>
    <div class="dest-body">
     <span class="flag">🇬🇧</span><h3>UK</h3><p>Study · Work · PR · Visit</p>
     <div class="stats"><div><b data-count="94" data-suffix="%">0%</b><span>Visa success rate</span></div>
       <div><b data-count="3" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
-    <a class="arrow" href="#contact">→</a>
+    <span class="arrow">→</span>
    </div>
+   <a class="dest-link" href="https://www.gov.uk/browse/visas-immigration" target="_blank" rel="noopener noreferrer" aria-label="Visit the official UK immigration website (GOV.UK Visas and Immigration)"></a>
   </article>
+
  </div>
 
  <div class="slider-nav">
@@ -838,9 +860,10 @@ function cardStep(){
 prevBtn.addEventListener("click", () => slider.scrollBy({ left: -cardStep(), behavior: "smooth" }));
 nextBtn.addEventListener("click", () => slider.scrollBy({ left:  cardStep(), behavior: "smooth" }));
 
-let isDown = false, startX = 0, startScroll = 0;
+let isDown = false, startX = 0, startScroll = 0, dragged = false;
 slider.addEventListener("mousedown", e => {
-  isDown = true; startX = e.pageX; startScroll = slider.scrollLeft;
+  isDown = true; dragged = false;
+  startX = e.pageX; startScroll = slider.scrollLeft;
   slider.classList.add("dragging");
 });
 window.addEventListener("mouseup", () => { isDown = false; slider.classList.remove("dragging"); });
@@ -848,8 +871,15 @@ slider.addEventListener("mouseleave", () => { isDown = false; slider.classList.r
 slider.addEventListener("mousemove", e => {
   if (!isDown) return;
   e.preventDefault();
+  const moved = Math.abs(e.pageX - startX);
+  if (moved > 6) dragged = true;
   slider.scrollLeft = startScroll - (e.pageX - startX) * 1.4;
 });
+/* Prevent accidental navigation after drag */
+slider.addEventListener("click", e => {
+  if (dragged){ e.preventDefault(); e.stopPropagation(); dragged = false; }
+}, true);
+
 slider.addEventListener("wheel", e => {
   if (Math.abs(e.deltaY) > Math.abs(e.deltaX)){
     e.preventDefault();
