@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Vardhaan Immigration — Study, Work, Permanent Residency and Visitor Visa guidance for USA, Canada, Australia, New Zealand and UK.">
+<title>Vardhaan Immigration | Your Dream. Our Direction.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071d36;--blue:#0878e8;--cyan:#31b9ff;--ink:#102b49;--muted:#60758d;
+  --bg:#f7fbff;--white:#fff;--line:#dce9f5;
+  --shadow:0 18px 55px rgba(8,44,82,.12);
+  --shadow-lg:0 28px 70px rgba(8,44,82,.18);
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:#fff;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:Manrope,sans-serif;line-height:1.08}
+a{text-decoration:none;color:inherit}
+button{font:inherit;border:0;cursor:pointer;background:none}
+img{max-width:100%;display:block}
+.container{width:min(1180px,92%);margin:auto}
+::selection{background:var(--blue);color:#fff}
+
+/* ---------- SCROLL PROGRESS ---------- */
+.scroll-bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:999;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),#7de3c6);transition:width .08s linear}
+
+/* ---------- CURSOR SPOTLIGHT ---------- */
+.cursor-glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(48,185,255,.14),transparent 62%);
+  transform:translate(-50%,-50%);transition:opacity .4s;mix-blend-mode:multiply}
+
+/* ---------- NAV ---------- */
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;
+  position:absolute;top:0;left:0;right:0;z-index:20}
+.logo{display:flex;align-items:center;gap:10px;font-family:Manrope;font-weight:800;color:var(--navy)}
+.logo-mark{width:38px;height:38px;border:3px solid var(--navy);border-radius:10px 22px 10px 22px;
+  transform:rotate(-12deg);display:grid;place-items:center;color:var(--blue);font-weight:800;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.logo:hover .logo-mark{transform:rotate(0deg) scale(1.05)}
+.logo small{display:block;font-size:8px;letter-spacing:2px;color:#6d8095;margin-top:-3px}
+.navlinks{display:flex;gap:28px;font-size:14px;font-weight:600}
+.navlinks a{position:relative;padding:4px 0;transition:color .25s}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;
+  background:var(--blue);transition:width .3s cubic-bezier(.2,.8,.2,1)}
+.navlinks a:hover{color:var(--blue)}
+.navlinks a:hover::after{width:100%}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:10px;
+  padding:14px 26px;
+  min-height:50px;
+  border-radius:999px;
+  background:var(--navy);color:#fff;
+  font-weight:700;font-size:14px;line-height:1;
+  white-space:nowrap;
+  position:relative;
+  box-shadow:0 8px 22px rgba(7,29,54,.18);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(7,29,54,.25)}
+.btn.light{background:#fff;color:var(--navy);border:1px solid #cfe0ef;box-shadow:none}
+.btn.light:hover{border-color:var(--blue);color:var(--blue);box-shadow:0 10px 25px rgba(8,120,232,.15)}
+.btn.blue{background:linear-gradient(135deg,var(--blue),#1260c9)}
+.btn .arrow{
+  position:static;width:auto;height:auto;background:transparent;color:inherit;
+  border-radius:0;display:inline;font-weight:700;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* ---------- HERO ---------- */
+.hero{min-height:680px;padding-top:110px;display:flex;align-items:center;position:relative;overflow:hidden;
+  background:linear-gradient(115deg,#edf8ff 0%,#fff 48%,#eaf6ff 100%)}
+.hero::before{content:"";position:absolute;width:700px;height:700px;border-radius:50%;
+  right:-180px;top:-80px;background:radial-gradient(circle,rgba(48,185,255,.18),transparent 66%);
+  animation:breathe 9s ease-in-out infinite}
+.hero::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+  left:-160px;bottom:-160px;background:radial-gradient(circle,rgba(125,227,198,.18),transparent 66%);
+  animation:breathe 11s ease-in-out infinite reverse}
+@keyframes breathe{50%{transform:scale(1.15)}}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;position:relative;z-index:2}
+.hero-text{position:relative;z-index:6}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;
+  background:#e8f5ff;color:#1472c8;font-weight:800;font-size:11px;letter-spacing:1.4px;
+  text-transform:uppercase;margin-bottom:18px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);
+  animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+.hero h1{font-size:clamp(40px,5.2vw,68px);letter-spacing:-2.4px;color:var(--navy);max-width:640px}
+.hero h1 span.grad{background:linear-gradient(90deg,var(--blue),var(--cyan),var(--blue));
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradientSlide 4s linear infinite}
+@keyframes gradientSlide{to{background-position:-200% 0}}
+.hero p{color:var(--muted);font-size:17px;max-width:540px;margin:22px 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.reveal-word{display:inline-block;opacity:0;transform:translateY(38px) rotate(4deg);
+  animation:wordIn .8s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes wordIn{to{opacity:1;transform:none}}
+
+.hero-art{min-height:510px;position:relative;perspective:1200px}
+.hero-photo{position:absolute;inset:35px 0 0 35px;border-radius:45% 45% 28px 28px;overflow:hidden;
+  box-shadow:var(--shadow-lg);background:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85") center/cover;
+  transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.hero-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(4,24,45,.22))}
+
+.globe{position:absolute;width:245px;height:245px;border-radius:50%;left:-20px;top:55px;
+  background:url("https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=700&q=85") center/cover;
+  border:8px solid rgba(255,255,255,.72);box-shadow:0 20px 50px rgba(8,120,232,.28);
+  animation:float 5s ease-in-out infinite;z-index:3}
+@keyframes float{50%{transform:translateY(-14px) rotate(3deg)}}
+
+.orbit{position:absolute;left:-58px;top:18px;width:320px;height:320px;border-radius:50%;
+  border:1px dashed rgba(8,120,232,.35);animation:spin 22s linear infinite;z-index:2}
+.orbit::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;
+  background:var(--blue);box-shadow:0 0 16px var(--blue)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.pin{position:absolute;width:16px;height:16px;background:#ff7c2f;border:4px solid #fff;border-radius:50%;
+  box-shadow:0 0 0 8px rgba(255,124,47,.14);z-index:4}
+.pin.one{left:45%;top:30%;animation:pinPulse 2s ease-in-out infinite}
+.pin.two{right:24%;top:43%;animation:pinPulse 2s ease-in-out infinite .5s}
+.pin.three{left:29%;bottom:25%;animation:pinPulse 2s ease-in-out infinite 1s}
+@keyframes pinPulse{50%{box-shadow:0 0 0 16px rgba(255,124,47,0)}}
+
+.float-card{position:absolute;background:#fff;border-radius:16px;padding:12px 16px;
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;z-index:5;
+  font-size:12px;font-weight:700;color:var(--navy);animation:float 6s ease-in-out infinite;
+  white-space:nowrap;pointer-events:none}
+.float-card.a{right:0;top:70px;animation-delay:.5s}
+.float-card.b{left:20px;bottom:55px;animation-delay:1.5s}
+.float-card .dot{width:8px;height:8px;border-radius:50%;background:#20c878;
+  box-shadow:0 0 0 4px rgba(32,200,120,.2);animation:pulse 1.8s infinite}
+
+/* ---------- TICKER ---------- */
+.ticker{background:var(--navy);color:#fff;overflow:hidden;padding:14px 0;position:relative}
+.ticker-track{display:flex;gap:48px;white-space:nowrap;
+  animation:marquee 28s linear infinite;font-weight:700;font-size:13px;letter-spacing:.5px}
+.ticker-track span{display:inline-flex;align-items:center;gap:12px;opacity:.85}
+.ticker-track span::before{content:"✦";color:var(--cyan)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.ticker:hover .ticker-track{animation-play-state:paused}
+
+/* ---------- TRUST ---------- */
+.trust{background:#fff;border-top:1px solid #e7f0f7;border-bottom:1px solid #e7f0f7}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);padding:22px 0;gap:18px}
+.trust-item{display:flex;align-items:center;gap:12px;transition:transform .3s}
+.trust-item:hover{transform:translateX(4px)}
+.trust-icon{width:38px;height:38px;border-radius:12px;background:#edf7ff;display:grid;
+  place-items:center;color:var(--blue);font-weight:800;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.trust-item:hover .trust-icon{transform:rotate(-10deg) scale(1.1)}
+.trust-item b{display:block;font-size:13px}
+.trust-item span{font-size:11px;color:var(--muted)}
+
+/* ---------- SECTIONS ---------- */
+.section{padding:90px 0;position:relative}
+.section.alt{background:var(--bg)}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:36px}
+.section-head p{color:var(--muted);max-width:600px;font-size:14px}
+.kicker{font-size:11px;letter-spacing:2px;color:var(--blue);font-weight:800;text-transform:uppercase;
+  margin-bottom:10px;display:inline-block;position:relative}
+.kicker::after{content:"";position:absolute;left:0;bottom:-6px;width:28px;height:2px;background:var(--blue)}
+.section h2{font-size:clamp(30px,4vw,45px);color:var(--navy)}
+
+/* ---------- DESTINATION SLIDER ---------- */
+.dest-slider{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(255px,1fr);gap:16px;
+  overflow-x:auto;scroll-snap-type:x mandatory;padding:5px 2px 22px;scrollbar-width:none;
+  cursor:grab}
+.dest-slider.dragging{cursor:grabbing;scroll-snap-type:none}
+.dest-slider::-webkit-scrollbar{display:none}
+.dest-card{scroll-snap-align:start;min-height:355px;border-radius:20px;overflow:hidden;
+  position:relative;background:#0d2c4a;color:#fff;box-shadow:0 12px 35px rgba(7,29,54,.12);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;transform-style:preserve-3d}
+.dest-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg)}
+.dest-img{height:180px;background-size:cover;background-position:center;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.dest-card:hover .dest-img{transform:scale(1.12)}
+.dest-body{padding:18px;position:relative;z-index:2}
+.flag{font-size:22px;display:inline-block;transition:transform .4s}
+.dest-card:hover .flag{transform:scale(1.25) rotate(-8deg)}
+.dest-body h3{font-size:22px;margin:4px 0}
+.dest-body p{font-size:12px;opacity:.78}
+.stats{display:flex;gap:20px;margin:14px 0}
+.stats b{font-size:18px;display:block}
+.stats span{font-size:9px;opacity:.7}
+.dest-card .arrow{position:absolute;right:16px;bottom:17px;width:38px;height:38px;border-radius:50%;
+  background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
+.dest-card:hover .arrow{transform:rotate(-45deg) scale(1.1);background:var(--cyan);color:#041a30}
+
+.slider-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.slider-nav button{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--line);
+  display:grid;place-items:center;font-size:16px;font-weight:800;color:var(--navy);
+  transition:transform .3s,background .3s,color .3s,border-color .3s}
+.slider-nav button:hover{background:var(--navy);color:#fff;border-color:var(--navy);transform:scale(1.1)}
+
+/* ---------- PATH CARDS ---------- */
+.path-grid{display:grid;grid-template-columns:1.1fr 2fr;gap:35px;align-items:center}
+.path-copy p{color:var(--muted);margin:15px 0 25px}
+.path-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.path-card{padding:25px;background:#fff;border:1px solid var(--line);border-radius:18px;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .4s;
+  position:relative;overflow:hidden}
+.path-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#e8f5ff,transparent);
+  opacity:0;transition:opacity .4s}
+.path-card:hover::before{opacity:1}
+.path-card:hover{border-color:#83c8ff;box-shadow:var(--shadow);transform:translateY(-6px)}
+.path-card>*{position:relative;z-index:2}
+.path-card .emoji{font-size:26px;display:inline-block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.path-card:hover .emoji{transform:scale(1.25) rotate(-8deg)}
+.path-card strong{display:block;font-size:17px;margin:12px 0 5px}
+.path-card span{font-size:12px;color:var(--muted)}
+
+/* ---------- SERVICES ---------- */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.service{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s}
+.service:hover{transform:translateY(-9px);box-shadow:var(--shadow-lg);border-color:#83c8ff}
+.service-img{height:155px;background-size:cover;background-position:center;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1);position:relative}
+.service:hover .service-img{transform:scale(1.1)}
+.service-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(7,29,54,.35))}
+.service-body{padding:22px}
+.service-body h3{font-size:18px}
+.service-body ul{padding-left:17px;margin:12px 0;color:var(--muted);font-size:12px}
+.service-body ul li{margin:4px 0}
+.service-body a{font-size:12px;font-weight:800;color:var(--blue);display:inline-flex;
+  align-items:center;gap:6px;transition:gap .3s}
+.service:hover .service-body a{gap:12px}
+
+/* ---------- PROCESS ---------- */
+.process{background:linear-gradient(120deg,#eef8ff,#fff);overflow:hidden}
+.process-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:45px;align-items:center}
+.process-photo{height:380px;border-radius:25px;
+  background:url("https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1100&q=85") center/cover;
+  box-shadow:var(--shadow);position:relative;overflow:hidden}
+.process-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 40%,rgba(8,120,232,.12))}
+
+/* --- STEPS --- */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  position:relative;
+}
+/* Remove the old wrapper pseudo-element line entirely */
+.steps::before{content:none}
+
+.step{position:relative;transition:transform .4s}
+.step:hover{transform:translateY(-4px)}
+
+.step-num{
+  width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;
+  display:grid;place-items:center;font-size:12px;font-weight:800;margin-bottom:12px;
+  position:relative;
+  z-index:2;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s;
+}
+.step:hover .step-num{transform:scale(1.15) rotate(-6deg);background:var(--blue)}
+.step h3{font-size:15px;position:relative;z-index:2}
+.step p{font-size:11px;color:var(--muted);margin-top:5px;position:relative;z-index:2}
+
+/* Connector line between step 01 (top-left) and step 04 (bottom-left) */
+.step:nth-child(1)::after{
+  content:"";
+  position:absolute;
+  left:17px;
+  top:40px;
+  width:2px;
+  height:calc(100% - 22px);
+  background:linear-gradient(180deg,var(--blue),var(--cyan));
+  border-radius:2px;
+  transform-origin:top;
+  transform:scaleY(0);
+  transition:transform 1.2s cubic-bezier(.2,.8,.2,1) .3s;
+  pointer-events:none;
+  z-index:1;
+}
+.steps.active .step:nth-child(1)::after{
+  transform:scaleY(1);
+}
+
+/* ---------- STORIES ---------- */
+.stories{background:linear-gradient(rgba(4,28,52,.88),rgba(4,28,52,.93)),
+  url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85") center/cover fixed;color:#fff}
+.stories h2,.stories .kicker{color:#fff}
+.stories .kicker::after{background:var(--cyan)}
+.stories .section-head p{color:#cbd8e5}
+.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.story{background:#fff;color:var(--ink);border-radius:20px;padding:24px;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;position:relative;overflow:hidden}
+.story::before{content:"“";position:absolute;top:6px;right:18px;font-family:Georgia,serif;
+  font-size:80px;color:var(--blue);opacity:.08;line-height:1}
+.story:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.story-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.avatar{width:50px;height:50px;border-radius:50%;background-size:cover;background-position:center;
+  border:2px solid var(--blue);transition:transform .4s}
+.story:hover .avatar{transform:scale(1.08)}
+.story p{font-size:13px;color:var(--muted);font-style:italic}
+.story small{display:block;margin-top:15px;font-weight:800}
+
+/* ---------- NUMBERS ---------- */
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);padding:42px 0;gap:15px}
+.number{text-align:center;border-right:1px solid var(--line);padding:8px}
+.number:last-child{border:0}
+.number b{font:800 36px Manrope;color:var(--blue);display:block}
+.number span{display:block;color:var(--muted);font-size:12px}
+
+/* ---------- WHY ---------- */
+.why-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.why-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}
+.why-item{display:flex;gap:12px;transition:transform .35s}
+.why-item:hover{transform:translateX(5px)}
+.why-item i{width:35px;height:35px;border-radius:11px;background:#eaf6ff;color:var(--blue);
+  display:grid;place-items:center;font-style:normal;flex-shrink:0;
+  transition:transform .4s,background .3s,color .3s}
+.why-item:hover i{transform:rotate(-10deg) scale(1.1);background:var(--blue);color:#fff}
+.why-item b{display:block;font-size:13px}
+.why-item span{font-size:11px;color:var(--muted)}
+.why-art{height:380px;border-radius:30px;position:relative;overflow:hidden;box-shadow:var(--shadow);
+  background:url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=85") center/cover;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.why-art:hover{transform:scale(1.02)}
+
+/* ---------- EXPLORER + FAQ ---------- */
+.explorer{display:grid;grid-template-columns:1fr 1.5fr;gap:40px}
+.country-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.country-pill{padding:10px 16px;border:1px solid var(--line);background:#fff;border-radius:99px;
+  font-size:12px;font-weight:700;transition:all .3s cubic-bezier(.2,.8,.2,1)}
+.country-pill:hover,.country-pill.active{background:var(--navy);color:#fff;border-color:var(--navy);
+  transform:translateY(-3px);box-shadow:0 10px 22px rgba(7,29,54,.2)}
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line);transition:background .3s}
+.faq-item:hover{background:#fbfdff}
+.faq-q{padding:19px 6px;display:flex;justify-content:space-between;align-items:center;
+  font-weight:700;font-size:14px;cursor:pointer;gap:20px}
+.faq-q span{font-size:22px;color:var(--blue);flex-shrink:0;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;color:var(--muted);font-size:12px;
+  transition:max-height .45s cubic-bezier(.2,.8,.2,1),padding .3s;padding:0 6px}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:18px}
+
+/* ---------- CTA ---------- */
+.cta{padding:80px 0;background:linear-gradient(120deg,#061c34,#0a3965);color:#fff;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+  right:-180px;top:-200px;background:radial-gradient(circle,rgba(48,185,255,.2),transparent 65%);
+  animation:breathe 8s ease-in-out infinite}
+.cta-box{display:flex;align-items:center;justify-content:space-between;gap:30px;position:relative;z-index:2}
+.cta p{color:#c4d5e5;margin-top:10px;max-width:650px}
+.cta .btn{background:#fff;color:var(--navy)}
+.cta .btn:hover{background:var(--cyan)}
+
+/* ---------- FOOTER ---------- */
+footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
+.footer-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+.footer-logo{color:#fff}
+.footer-grid h4{color:#fff;margin-bottom:14px}
+.footer-grid a,.footer-grid p{font-size:12px;display:block;margin:7px 0;transition:transform .3s,color .3s}
+.footer-grid a:hover{color:var(--cyan);transform:translateX(4px)}
+.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:35px;padding-top:18px;
+  font-size:10px;display:flex;justify-content:space-between}
+
+/* ---------- FLOATING WHATSAPP ---------- */
+.wa{position:fixed;right:22px;bottom:22px;width:56px;height:56px;border-radius:50%;
+  background:#20c878;color:#fff;display:grid;place-items:center;font-weight:900;z-index:50;
+  box-shadow:0 12px 30px rgba(32,200,120,.4);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #20c878;
+  animation:ripple 2.4s ease-out infinite}
+@keyframes ripple{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.wa:hover{transform:scale(1.1) rotate(-8deg)}
+
+/* ---------- SCROLL REVEALS ---------- */
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),
+  transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),
+  transform .8s cubic-bezier(.2,.8,.2,1)}
+.stagger.visible>*{opacity:1;transform:none}
+.stagger.visible>*:nth-child(1){transition-delay:.05s}
+.stagger.visible>*:nth-child(2){transition-delay:.15s}
+.stagger.visible>*:nth-child(3){transition-delay:.25s}
+.stagger.visible>*:nth-child(4){transition-delay:.35s}
+.stagger.visible>*:nth-child(5){transition-delay:.45s}
+.stagger.visible>*:nth-child(6){transition-delay:.55s}
+
+/* ---------- 3D TILT ---------- */
+.tilt{transform-style:preserve-3d;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- MOBILE ---------- */
+.mobile-menu{display:none}
+@media(max-width:900px){
+  .navlinks{display:none}
+  .mobile-menu{display:block;background:transparent;font-size:25px;color:var(--navy)}
+  .cursor-glow{display:none}
+  .hero{padding-top:115px}
+  .hero-grid,.path-grid,.process-grid,.why-grid,.explorer,.faq{grid-template-columns:1fr}
+  .hero-art{min-height:420px}
+  .hero-photo{inset:15px 0 0 30px}
+  .globe{width:180px;height:180px;left:0}
+  .orbit{display:none}
+  .trust-grid,.services,.numbers{grid-template-columns:repeat(2,1fr)}
+  .story-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .stories{background-attachment:scroll}
+  .float-card{font-size:11px;padding:10px 14px}
+  .float-card.a{right:10px;top:30px}
+  .float-card.b{left:10px;bottom:30px}
+}
+@media(max-width:560px){
+  .nav{height:68px}
+  .nav .btn{display:none}
+  .hero{min-height:auto;padding:100px 0 45px}
+  .hero h1{font-size:40px;letter-spacing:-1.6px}
+  .hero p{font-size:15px}
+  .hero-art{min-height:320px}
+  .hero-photo{inset:20px 0 0 10px}
+  .globe{width:145px;height:145px;top:0}
+  .float-card.b{left:0}
+  .section{padding:62px 0}
+  .section-head{display:block}
+  .section-head .btn{margin-top:18px}
+  .dest-slider{grid-auto-columns:83%}
+  .path-cards,.services,.trust-grid,.numbers,.why-list,.steps{grid-template-columns:1fr}
+  .number{border-right:0;border-bottom:1px solid var(--line);padding-bottom:15px}
+  .footer-grid{grid-template-columns:1fr}
+  .copyright{display:block}
+  .copyright span{display:block;margin-top:8px}
+  .cta-box{display:block}
+  .cta .btn{margin-top:22px}
+  .step:nth-child(1)::after{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+  .step:nth-child(1)::after{transform:scaleY(1)}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<header class="nav container">
+  <a class="logo" href="#"><div class="logo-mark">V</div><div>VARDHAAN<small>IMMIGRATION</small></div></a>
+  <nav class="navlinks">
+    <a href="#countries">Countries</a>
+    <a href="#services">Services</a>
+    <a href="#stories">Success Stories</a>
+    <a href="#about">About Us</a>
+    <a href="#faq">Resources</a>
+  </nav>
+  <a class="btn" href="#contact">Check Eligibility <span class="arrow">→</span></a>
+  <button class="mobile-menu" aria-label="Menu">☰</button>
+</header>
+
+<main>
+<section class="hero">
+ <div class="container hero-grid">
+  <div class="hero-text">
+   <div class="eyebrow">Your Global Journey Partner</div>
+   <h1>
+     <span class="reveal-word" style="animation-delay:.05s">Dream</span>
+     <span class="reveal-word" style="animation-delay:.15s">Bigger.</span><br>
+     <span class="reveal-word" style="animation-delay:.28s">Move</span>
+     <span class="reveal-word" style="animation-delay:.38s">Further.</span><br>
+     <span class="grad">
+       <span class="reveal-word" style="animation-delay:.55s">With</span>
+       <span class="reveal-word" style="animation-delay:.65s">Vardhaan</span>
+       <span class="reveal-word" style="animation-delay:.75s">Immigration.</span>
+     </span>
+   </h1>
+   <p class="reveal" style="transition-delay:.9s">Expert guidance for your study, work, and immigration journey to the world's most desirable destinations.</p>
+   <div class="actions reveal" style="transition-delay:1s">
+     <a class="btn blue magnetic" href="#contact">Check My Eligibility <span class="arrow">→</span></a>
+     <a class="btn light magnetic" href="#countries">Explore Countries <span class="arrow">→</span></a>
+   </div>
+  </div>
+  <div class="hero-art reveal" style="transition-delay:.4s">
+   <div class="orbit"></div>
+   <div class="hero-photo" id="heroPhoto"></div>
+   <div class="globe"><i class="pin one"></i><i class="pin two"></i><i class="pin three"></i></div>
+   <div class="float-card a"><span class="dot"></span> Visa Approved!</div>
+   <div class="float-card b">🌍 5 Destinations</div>
+  </div>
+ </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<section class="trust"><div class="container trust-grid stagger reveal">
+ <div class="trust-item"><div class="trust-icon">✥</div><div><b>Expert Guidance</b><span>End-to-end support</span></div></div>
+ <div class="trust-item"><div class="trust-icon">✓</div><div><b>Transparent Process</b><span>No hidden fees</span></div></div>
+ <div class="trust-item"><div class="trust-icon">♧</div><div><b>Global Network</b><span>5 key destinations</span></div></div>
+ <div class="trust-item"><div class="trust-icon">♡</div><div><b>Dedicated Support</b><span>Always with you</span></div></div>
+</div></section>
+
+<section class="section" id="countries"><div class="container">
+ <div class="section-head reveal">
+  <div><div class="kicker">Featured Destinations</div><h2>Explore Your Dream Destination</h2></div>
+  <p>Discover your options, understand the pathways, and explore real stories from people who started their journey with us.</p>
+ </div>
+
+ <div class="dest-slider reveal" id="destSlider">
+  <article class="dest-card tilt">
+   <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=800&q=80')"></div>
+   <div class="dest-body">
+    <span class="flag">🇺🇸</span><h3>USA</h3><p>Study · Work · PR · Visit</p>
+    <div class="stats"><div><b data-count="98" data-suffix="%">0%</b><span>Visa success rate</span></div>
+      <div><b data-count="9" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
+    <a class="arrow" href="#contact">→</a>
+   </div>
+  </article>
+
+  <article class="dest-card tilt">
+   <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=800&q=80')"></div>
+   <div class="dest-body">
+    <span class="flag">🇨🇦</span><h3>Canada</h3><p>Study · Work · PR · Visit</p>
+    <div class="stats"><div><b data-count="96" data-suffix="%">0%</b><span>Visa success rate</span></div>
+      <div><b data-count="4" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
+    <a class="arrow" href="#contact">→</a>
+   </div>
+  </article>
+
+  <article class="dest-card tilt">
+   <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80')"></div>
+   <div class="dest-body">
+    <span class="flag">🇦🇺</span><h3>Australia</h3><p>Study · Work · PR · Visit</p>
+    <div class="stats"><div><b data-count="94" data-suffix="%">0%</b><span>Visa success rate</span></div>
+      <div><b data-count="3" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
+    <a class="arrow" href="#contact">→</a>
+   </div>
+  </article>
+
+  <article class="dest-card tilt">
+   <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1469521669194-babb45599def?auto=format&fit=crop&w=800&q=80')"></div>
+   <div class="dest-body">
+    <span class="flag">🇳🇿</span><h3>New Zealand</h3><p>Study · Work · PR · Visit</p>
+    <div class="stats"><div><b data-count="92" data-suffix="%">0%</b><span>Visa success rate</span></div>
+      <div><b data-count="2" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
+    <a class="arrow" href="#contact">→</a>
+   </div>
+  </article>
+
+  <article class="dest-card tilt">
+   <div class="dest-img" style="background-image:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80')"></div>
+   <div class="dest-body">
+    <span class="flag">🇬🇧</span><h3>UK</h3><p>Study · Work · PR · Visit</p>
+    <div class="stats"><div><b data-count="94" data-suffix="%">0%</b><span>Visa success rate</span></div>
+      <div><b data-count="3" data-suffix="K+">0K+</b><span>Clients assisted</span></div></div>
+    <a class="arrow" href="#contact">→</a>
+   </div>
+  </article>
+ </div>
+
+ <div class="slider-nav">
+  <button id="slidePrev" aria-label="Previous">←</button>
+  <button id="slideNext" aria-label="Next">→</button>
+ </div>
+</div></section>
+
+<section class="section alt"><div class="container path-grid">
+ <div class="path-copy reveal">
+  <div class="kicker">Find Your Path</div>
+  <h2>What Are You Looking For?</h2>
+  <p>Tell us what you're looking for, and we'll help you find the best immigration pathway for you.</p>
+  <a class="btn blue magnetic" href="#contact">Take the Next Step <span class="arrow">→</span></a>
+ </div>
+ <div class="path-cards stagger reveal">
+  <div class="path-card tilt"><div class="emoji">🎓</div><strong>Study Abroad</strong><span>Get world-class education and global exposure.</span></div>
+  <div class="path-card tilt"><div class="emoji">💼</div><strong>Work Abroad</strong><span>Build your career internationally.</span></div>
+  <div class="path-card tilt"><div class="emoji">🏠</div><strong>Permanent Residency</strong><span>Settle for a better future.</span></div>
+  <div class="path-card tilt"><div class="emoji">✈️</div><strong>Visit Visa</strong><span>Explore the world with your loved ones.</span></div>
+ </div>
+</div></section>
+
+<section class="section" id="services"><div class="container">
+ <div class="section-head reveal">
+  <div><div class="kicker">Our Services</div><h2>Comprehensive Immigration Services</h2></div>
+  <p>From initial consultation to final approval, we provide end-to-end support for your immigration needs.</p>
+ </div>
+ <div class="services stagger reveal">
+  <article class="service tilt">
+   <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=700&q=80')"></div>
+   <div class="service-body"><h3>Study Abroad</h3><ul><li>University selection</li><li>Application support</li><li>Visa assistance</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+  </article>
+  <article class="service tilt">
+   <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80')"></div>
+   <div class="service-body"><h3>Work Abroad</h3><ul><li>Work permits</li><li>Employer pathways</li><li>Documentation</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+  </article>
+  <article class="service tilt">
+   <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=700&q=80')"></div>
+   <div class="service-body"><h3>Permanent Residency</h3><ul><li>Profile assessment</li><li>Eligibility check</li><li>Application guidance</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+  </article>
+  <article class="service tilt">
+   <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=700&q=80')"></div>
+   <div class="service-body"><h3>Visitor Visa</h3><ul><li>Tourism visits</li><li>Family visits</li><li>Business visits</li></ul><a href="#contact">Learn More <span>→</span></a></div>
+  </article>
+ </div>
+</div></section>
+
+<section class="section process"><div class="container process-grid">
+ <div class="process-photo reveal"></div>
+ <div class="reveal">
+  <div class="kicker">Simple & Clear</div>
+  <h2>How It Works</h2>
+  <p style="color:var(--muted);margin:14px 0 30px">A step-by-step process designed to make your immigration journey smooth and stress-free.</p>
+  <div class="steps stagger reveal" id="stepsWrap">
+   <div class="step"><div class="step-num">01</div><h3>Discovery</h3><p>Understand your goals and profile.</p></div>
+   <div class="step"><div class="step-num">02</div><h3>Eligibility Check</h3><p>Assess your profile and documents.</p></div>
+   <div class="step"><div class="step-num">03</div><h3>Strategy</h3><p>Choose the best pathway.</p></div>
+   <div class="step"><div class="step-num">04</div><h3>Documentation</h3><p>Prepare and review documents.</p></div>
+   <div class="step"><div class="step-num">05</div><h3>Application</h3><p>Submit and track your application.</p></div>
+   <div class="step"><div class="step-num">06</div><h3>Decision</h3><p>Get closer to your dreams.</p></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="section stories" id="stories"><div class="container">
+ <div class="section-head reveal">
+  <div><div class="kicker">Real People. Real Journeys.</div><h2>Success Stories</h2></div>
+  <p>Hear from our clients who turned their dreams into reality with our guidance and support.</p>
+ </div>
+ <div class="story-grid stagger reveal">
+  <article class="story tilt">
+   <div class="story-top"><div class="avatar" style="background-image:url('https://i.pravatar.cc/100?img=12')"></div>
+    <div><b>🇺🇸 USA</b><small>Work Visa</small></div></div>
+   <p>“Vardhaan Immigration made our dream of living in the USA a reality. The team was supportive at every step.”</p>
+   <small>Amit & Neha Sharma</small>
+  </article>
+  <article class="story tilt">
+   <div class="story-top"><div class="avatar" style="background-image:url('https://i.pravatar.cc/100?img=11')"></div>
+    <div><b>🇨🇦 Canada</b><small>Permanent Residency</small></div></div>
+   <p>“Professional, transparent and truly caring. We got our PR approved in less than 8 months.”</p>
+   <small>Rohit Verma</small>
+  </article>
+  <article class="story tilt">
+   <div class="story-top"><div class="avatar" style="background-image:url('https://i.pravatar.cc/100?img=47')"></div>
+    <div><b>🇦🇺 Australia</b><small>Student Visa</small></div></div>
+   <p>“The guidance and support we received was outstanding. Highly recommend Vardhaan Immigration.”</p>
+   <small>Sneha Kapoor</small>
+  </article>
+ </div>
+</div></section>
+
+<section class="trust"><div class="container numbers stagger reveal">
+ <div class="number"><b data-count="10" data-suffix="+">0+</b><span>Years of Experience</span></div>
+ <div class="number"><b data-count="5000" data-suffix="+">0+</b><span>Happy Clients</span></div>
+ <div class="number"><b data-count="5">0</b><span>Countries</span></div>
+ <div class="number"><b data-count="98" data-suffix="%">0%</b><span>Success Rate</span></div>
+</div></section>
+
+<section class="section" id="about"><div class="container why-grid">
+ <div class="reveal">
+  <div class="kicker">Why Choose Us</div>
+  <h2>Your Goals. Our Commitment.</h2>
+  <p style="color:var(--muted);margin-top:15px">We go beyond paperwork. We're your partners in building a better future abroad.</p>
+  <div class="why-list stagger reveal">
+   <div class="why-item"><i>✓</i><div><b>Trusted & Certified</b><span>Recognized and reliable.</span></div></div>
+   <div class="why-item"><i>◈</i><div><b>End-to-End Support</b><span>From start to your visa.</span></div></div>
+   <div class="why-item"><i>◎</i><div><b>Personalized Guidance</b><span>Tailored to your profile.</span></div></div>
+   <div class="why-item"><i>◇</i><div><b>Ethical & Transparent</b><span>No hidden costs.</span></div></div>
+  </div>
+ </div>
+ <div class="why-art reveal"></div>
+</div></section>
+
+<section class="section alt"><div class="container explorer">
+ <div class="reveal">
+  <div class="kicker">Explore Countries</div>
+  <h2>Find the Right Destination</h2>
+  <p style="color:var(--muted);margin-top:12px">Compare countries, explore visa options and get expert guidance.</p>
+  <div class="country-list stagger reveal">
+   <button class="country-pill active">🇺🇸 USA</button>
+   <button class="country-pill">🇨🇦 Canada</button>
+   <button class="country-pill">🇦🇺 Australia</button>
+   <button class="country-pill">🇳🇿 New Zealand</button>
+   <button class="country-pill">🇬🇧 UK</button>
+  </div>
+ </div>
+ <div class="faq reveal" id="faq">
+  <div>
+   <div class="kicker">FAQs</div>
+   <h2>Frequently Asked Questions</h2>
+   <p style="color:var(--muted);margin-top:12px;font-size:13px">Quick answers to help you make informed decisions.</p>
+  </div>
+  <div class="faq-list">
+   <div class="faq-item"><div class="faq-q">How long does the immigration process take?<span>+</span></div>
+    <div class="faq-a">Processing times vary by country, visa category and individual application. Our team can explain the current pathway and documentation requirements.</div></div>
+   <div class="faq-item"><div class="faq-q">What are the eligibility requirements for each country?<span>+</span></div>
+    <div class="faq-a">Requirements depend on the pathway. We assess your profile, goals and documents before recommending relevant options.</div></div>
+   <div class="faq-item"><div class="faq-q">Which documents do I need to apply?<span>+</span></div>
+    <div class="faq-a">Typical requirements can include identity, education, employment, financial and supporting documents, depending on the visa.</div></div>
+   <div class="faq-item"><div class="faq-q">Can I apply if I have a previous refusal?<span>+</span></div>
+    <div class="faq-a">A previous refusal does not automatically answer whether a future application is possible; the refusal reason and new evidence need to be reviewed.</div></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="cta" id="contact"><div class="container cta-box">
+ <div class="reveal">
+  <div class="kicker" style="color:#63c8ff">Ready to Take the Next Step?</div>
+  <h2>Not sure which country is right for you?</h2>
+  <p>Talk to our experts and get a personalized consultation based on your profile and goals.</p>
+ </div>
+ <a class="btn magnetic reveal" href="mailto:hello@vardhaanimigration.com">Check My Eligibility <span class="arrow">→</span></a>
+</div></section>
+</main>
+
+<footer><div class="container footer-grid">
+ <div>
+  <a class="logo footer-logo" href="#"><div class="logo-mark" style="border-color:#fff">V</div>
+   <div>VARDHAAN<small style="color:#9fb3c7">IMMIGRATION</small></div></a>
+  <p style="margin-top:15px">Your Dream. Our Direction.</p>
+ </div>
+ <div><h4>Explore</h4><a href="#countries">Countries</a><a href="#services">Services</a><a href="#stories">Success Stories</a></div>
+ <div><h4>Company</h4><a href="#about">About Us</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></div>
+ <div><h4>Destinations</h4><a href="#countries">USA</a><a href="#countries">Canada</a><a href="#countries">Australia</a><a href="#countries">New Zealand</a><a href="#countries">UK</a></div>
+</div>
+<div class="container copyright">
+ <span>© 2026 Vardhaan Immigration. All rights reserved.</span>
+ <span>Privacy Policy · Terms & Conditions</span>
+</div></footer>
+
+<a class="wa" href="https://wa.me/919999999999" aria-label="WhatsApp">WA</a>
+
+<script>
+/* 1. SCROLL PROGRESS BAR */
+const scrollBar = document.getElementById("scrollBar");
+function updateScrollBar(){
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  scrollBar.style.width = scrolled + "%";
+}
+window.addEventListener("scroll", updateScrollBar, { passive:true });
+updateScrollBar();
+
+/* 2. CURSOR SPOTLIGHT */
+const glow = document.getElementById("cursorGlow");
+let gx = window.innerWidth/2, gy = window.innerHeight/2;
+let tx = gx, ty = gy;
+window.addEventListener("mousemove", e => { tx = e.clientX; ty = e.clientY; });
+function animateGlow(){
+  gx += (tx - gx) * 0.12;
+  gy += (ty - gy) * 0.12;
+  glow.style.left = gx + "px";
+  glow.style.top  = gy + "px";
+  requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+/* 3. SCROLL REVEALS */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add("visible");
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+document.querySelectorAll(".reveal, .stagger").forEach(el => observer.observe(el));
+
+/* 4. ANIMATED COUNTERS */
+function animateCount(el){
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || "";
+  const duration = 1600;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const value = Math.round(target * eased);
+    el.textContent = value.toLocaleString() + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      animateCount(e.target);
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll("[data-count]").forEach(el => counterObserver.observe(el));
+
+/* 5. HERO PARALLAX */
+const heroPhoto = document.getElementById("heroPhoto");
+const globe = document.querySelector(".globe");
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+  if (y < 800){
+    heroPhoto.style.transform = `translateY(${y * 0.08}px)`;
+    if (globe) globe.style.transform = `translateY(${y * -0.05}px)`;
+  }
+}, { passive:true });
+
+/* 6. 3D TILT */
+document.querySelectorAll(".tilt").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-6px)`;
+  });
+  card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+});
+
+/* 7. DESTINATION SLIDER */
+const slider = document.getElementById("destSlider");
+const prevBtn = document.getElementById("slidePrev");
+const nextBtn = document.getElementById("slideNext");
+function cardStep(){
+  const card = slider.querySelector(".dest-card");
+  if (!card) return 300;
+  const gap = parseFloat(getComputedStyle(slider).gap) || 16;
+  return card.offsetWidth + gap;
+}
+prevBtn.addEventListener("click", () => slider.scrollBy({ left: -cardStep(), behavior: "smooth" }));
+nextBtn.addEventListener("click", () => slider.scrollBy({ left:  cardStep(), behavior: "smooth" }));
+
+let isDown = false, startX = 0, startScroll = 0;
+slider.addEventListener("mousedown", e => {
+  isDown = true; startX = e.pageX; startScroll = slider.scrollLeft;
+  slider.classList.add("dragging");
+});
+window.addEventListener("mouseup", () => { isDown = false; slider.classList.remove("dragging"); });
+slider.addEventListener("mouseleave", () => { isDown = false; slider.classList.remove("dragging"); });
+slider.addEventListener("mousemove", e => {
+  if (!isDown) return;
+  e.preventDefault();
+  slider.scrollLeft = startScroll - (e.pageX - startX) * 1.4;
+});
+slider.addEventListener("wheel", e => {
+  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+    e.preventDefault();
+    slider.scrollLeft += e.deltaY;
+  }
+}, { passive:false });
+
+/* 8. PROCESS STEP CONNECTOR */
+const stepsWrap = document.getElementById("stepsWrap");
+const stepObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add("active");
+      stepObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+if (stepsWrap) stepObserver.observe(stepsWrap);
+
+/* 9. FAQ ACCORDION */
+document.querySelectorAll(".faq-q").forEach(q => {
+  q.addEventListener("click", () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains("open");
+    document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+    if (!isOpen) item.classList.add("open");
+  });
+});
+
+/* 10. COUNTRY PILLS */
+document.querySelectorAll(".country-pill").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".country-pill").forEach(x => x.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
+
+/* 11. MAGNETIC BUTTONS */
+document.querySelectorAll(".magnetic").forEach(btn => {
+  btn.addEventListener("mousemove", e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width/2;
+    const y = e.clientY - r.top - r.height/2;
+    btn.style.transform = `translate(${x * 0.18}px, ${y * 0.35 - 3}px)`;
+  });
+  btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
+});
+
+/* 12. MARQUEE TICKER */
+const tickerTrack = document.getElementById("tickerTrack");
+const tickerItems = [
+  "Study Abroad","Work Permits","Permanent Residency","Visitor Visa",
+  "USA","Canada","Australia","New Zealand","UK",
+  "Transparent Process","Expert Guidance","End-to-End Support"
+];
+const tickerHTML = tickerItems.map(t => `<span>${t}</span>`).join("");
+tickerTrack.innerHTML = tickerHTML + tickerHTML;
+
+/* 13. MOBILE MENU */
+document.querySelector(".mobile-menu")?.addEventListener("click", () => {
+  document.getElementById("countries")?.scrollIntoView({ behavior:"smooth" });
+});
+</script>
+</body>
+</html>
