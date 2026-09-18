@@ -93,11 +93,16 @@ img{max-width:100%;display:block}
   animation:wordIn .8s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes wordIn{to{opacity:1;transform:none}}
 
-/* INTERACTIVE WORLD MAP */
-.hero-art{position:relative;min-height:520px;perspective:1600px}
+/* ============================================================
+   INTERACTIVE WORLD MAP
+============================================================ */
+.hero-art{position:relative;min-height:560px;perspective:1600px;
+  perspective-origin:50% 45%}
 .map-scene{position:absolute;inset:0;transform-style:preserve-3d;
   transition:transform .5s cubic-bezier(.2,.8,.2,1);
-  display:flex;align-items:center;justify-content:center}
+  display:flex;align-items:center;justify-content:center;
+  transform-style:preserve-3d}
+
 .map-disc{
   position:relative;width:100%;max-width:660px;aspect-ratio:2/1;
   border-radius:26px;overflow:hidden;
@@ -107,7 +112,7 @@ img{max-width:100%;display:block}
     0 40px 90px rgba(7,29,54,.45),
     inset 0 0 100px rgba(49,185,255,.10),
     0 0 0 1px rgba(49,185,255,.10);
-  transform:translateZ(20px);
+  transform:translateZ(0);
 }
 .map-svg{position:absolute;inset:0;width:100%;height:100%;display:block;
   z-index:2;pointer-events:auto}
@@ -220,19 +225,59 @@ img{max-width:100%;display:block}
 }
 .map-tooltip.show{opacity:1;transform:translateY(0)}
 
+/* ============================================================
+   FLOATING CARDS — now integrated with the 3D map
+   Positioned to overlap the map edges slightly, floating well
+   above the map surface (translateZ), and tilting with it.
+============================================================ */
 .float-card{
-  position:absolute;background:#fff;border-radius:16px;padding:12px 16px;
-  box-shadow:0 14px 40px rgba(2,6,23,.18);
+  position:absolute;
+  background:#fff;border-radius:16px;padding:12px 16px;
+  box-shadow:
+    0 24px 55px rgba(2,6,23,.30),
+    0 4px 12px rgba(2,6,23,.14),
+    0 0 0 1px rgba(255,255,255,.6);
   display:flex;align-items:center;gap:10px;
   font-size:12px;font-weight:700;color:var(--navy);
-  white-space:nowrap;pointer-events:none;z-index:8;
+  white-space:nowrap;pointer-events:none;z-index:12;
+  will-change:transform;
+  backface-visibility:hidden;
 }
-.float-card.a{right:-8px;top:-18px;animation:floatA 6s ease-in-out infinite}
-.float-card.b{left:-14px;bottom:-18px;animation:floatB 6s ease-in-out infinite}
-@keyframes floatA{50%{transform:translateY(-10px)}}
-@keyframes floatB{50%{transform:translateY(-12px)}}
+/* Card A — "Visa Approved!" — top-right, overlapping the map edge */
+.float-card.a{
+  right:6%;
+  top:4%;
+  transform: translateZ(120px) rotateY(-10deg) rotateX(4deg);
+  animation: floatA 6s ease-in-out infinite;
+}
+/* Card B — "5 Destinations" — bottom-left, overlapping the map edge */
+.float-card.b{
+  left:6%;
+  bottom:4%;
+  transform: translateZ(120px) rotateY(10deg) rotateX(-4deg);
+  animation: floatB 6s ease-in-out infinite;
+}
+/* Keyframes preserve translateZ + tilt so cards keep floating above the map */
+@keyframes floatA{
+  0%,100%{transform: translateZ(120px) rotateY(-10deg) rotateX(4deg) translateY(0)}
+  50%    {transform: translateZ(140px) rotateY(-10deg) rotateX(4deg) translateY(-10px)}
+}
+@keyframes floatB{
+  0%,100%{transform: translateZ(120px) rotateY(10deg) rotateX(-4deg) translateY(0)}
+  50%    {transform: translateZ(140px) rotateY(10deg) rotateX(-4deg) translateY(-12px)}
+}
 .float-card .dot{width:8px;height:8px;border-radius:50%;background:#20c878;
   box-shadow:0 0 0 4px rgba(32,200,120,.2);animation:pulse 1.8s infinite}
+
+/* Shadow beneath the map to anchor it in 3D space */
+.map-shadow{
+  position:absolute;left:50%;bottom:-30px;
+  width:70%;height:60px;
+  transform:translateX(-50%) translateZ(-40px);
+  background:radial-gradient(ellipse, rgba(7,29,54,.35), transparent 70%);
+  filter:blur(18px);
+  pointer-events:none;z-index:0;
+}
 
 /* TICKER */
 .ticker{background:var(--navy);color:#fff;overflow:hidden;padding:14px 0;position:relative}
@@ -559,8 +604,16 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
   .steps{grid-template-columns:repeat(2,1fr)}
   .stories{background-attachment:scroll}
   .float-card{font-size:11px;padding:10px 12px}
-  .float-card.a{right:-4px;top:-16px}
-  .float-card.b{left:-4px;bottom:-16px}
+  .float-card.a{right:2%;top:2%;transform:translateZ(80px) rotateY(-6deg)}
+  .float-card.b{left:2%;bottom:2%;transform:translateZ(80px) rotateY(6deg)}
+  @keyframes floatA{
+    0%,100%{transform:translateZ(80px) rotateY(-6deg) translateY(0)}
+    50%    {transform:translateZ(95px) rotateY(-6deg) translateY(-8px)}
+  }
+  @keyframes floatB{
+    0%,100%{transform:translateZ(80px) rotateY(6deg) translateY(0)}
+    50%    {transform:translateZ(95px) rotateY(6deg) translateY(-10px)}
+  }
   .notif-stack{left:14px;bottom:14px;max-width:calc(100vw - 100px)}
   .contact-grid{grid-template-columns:1fr}
   .contact-section{padding:62px 0}
@@ -639,9 +692,13 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
    </div>
   </div>
 
-  <!-- INTERACTIVE WORLD MAP -->
+  <!-- INTERACTIVE WORLD MAP WITH 3D FLOATING CARDS -->
   <div class="hero-art reveal" id="heroArt" style="transition-delay:.4s">
    <div class="map-scene" id="mapScene">
+
+    <!-- Anchor shadow beneath the map -->
+    <div class="map-shadow"></div>
+
     <div class="map-disc">
 
      <div class="map-tooltip" id="mapTooltip">Hover a region</div>
@@ -670,10 +727,8 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
        <path id="arc-uk"  d="M 715 170 Q 610 50 500 107"/>
       </defs>
 
-      <!-- OCEAN -->
       <rect width="1000" height="500" fill="url(#oceanGrad)"/>
 
-      <!-- LAT/LON GRID -->
       <g class="map-grid-lines">
        <line x1="0" y1="83" x2="1000" y2="83"/>
        <line x1="0" y1="167" x2="1000" y2="167" class="major"/>
@@ -687,96 +742,75 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
        <line x1="833" y1="0" x2="833" y2="500"/>
       </g>
 
-      <!-- ============ CONTINENTS ============ -->
       <g class="continents" fill-rule="evenodd">
-
        <path class="continent" data-region="Greenland" d="
          M 306 19 L 444 19 L 444 56 L 431 69 L 375 83 L 347 83 L 306 56 Z"/>
-
        <path class="continent" data-region="North America" d="
          M 33 53 L 56 53 L 111 56 L 153 56 L 222 56 L 264 56 L 306 83 L 333 97
          L 347 106 L 333 119 L 306 125 L 292 139 L 278 161 L 278 178 L 272 181
          L 236 169 L 231 181 L 236 200 L 250 208 L 264 219 L 283 228 L 272 228
          L 258 214 L 244 208 L 208 194 L 194 186 L 175 161 L 161 147 L 156 125
          L 153 111 L 139 97 L 111 83 L 83 83 L 42 89 L 33 69 Z"/>
-
        <path class="continent" data-region="South America" d="
          M 278 222 L 292 222 L 333 222 L 361 250 L 403 264 L 394 292 L 389 311
          L 367 328 L 347 347 L 328 361 L 319 375 L 306 394 L 300 403 L 297 394
          L 300 375 L 297 353 L 300 333 L 306 306 L 292 292 L 283 264 L 278 250 Z"/>
-
        <path class="continent" data-region="Europe" d="
          M 472 131 L 472 144 L 475 147 L 486 150 L 500 144 L 508 133 L 514 131
          L 528 128 L 533 144 L 542 144 L 550 139 L 556 139 L 569 144 L 578 136
          L 583 125 L 578 97 L 583 83 L 569 69 L 556 56 L 542 61 L 528 69 L 514 83
          L 514 97 L 508 106 L 494 114 L 486 117 L 478 128 Z"/>
-
        <path class="continent" data-region="Africa" d="
          M 453 208 L 453 192 L 472 164 L 500 150 L 528 147 L 556 161 L 589 164
          L 597 181 L 619 217 L 642 217 L 642 236 L 617 253 L 611 278 L 611 306
          L 597 319 L 589 333 L 578 344 L 556 347 L 542 342 L 533 319 L 533 292
          L 539 264 L 528 250 L 522 236 L 500 236 L 478 236 L 458 222 Z"/>
-
        <path class="continent" data-region="Asia" d="
          M 583 56 L 639 56 L 694 47 L 778 33 L 889 47 L 972 56 L 1000 69 L 972 83
          L 944 97 L 903 125 L 875 125 L 861 97 L 806 111 L 750 97 L 694 97
          L 653 97 L 625 97 L 597 83 Z"/>
-
        <path class="continent" data-region="East Asia" d="
          M 708 125 L 750 125 L 833 125 L 875 139 L 861 153 L 839 167 L 839 189
          L 806 194 L 792 189 L 778 181 L 764 181 L 750 172 L 744 189 L 736 189
          L 722 194 L 717 222 L 708 208 L 700 194 L 708 181 L 717 167 L 708 153
          L 708 139 Z"/>
-
        <path class="continent" data-region="India" d="
          M 689 186 L 700 181 L 717 167 L 744 175 L 750 189 L 756 189 L 756 194
          L 750 208 L 736 217 L 722 222 L 717 228 L 711 222 L 700 208 L 694 194 Z"/>
-
        <path class="continent" data-region="Middle East" d="
          M 583 167 L 597 153 L 625 139 L 653 139 L 667 153 L 672 172 L 661 181
          L 653 189 L 633 181 L 625 208 L 622 217 L 617 208 L 611 194 L 597 172 Z"/>
-
        <path class="continent" data-region="Southeast Asia" d="
          M 764 189 L 792 189 L 806 208 L 833 208 L 847 222 L 861 236 L 861 256
          L 833 264 L 819 272 L 792 267 L 778 258 L 772 236 L 764 222 L 756 208 Z"/>
-
        <path class="continent" data-region="Indonesia" d="
          M 764 236 L 875 236 L 889 272 L 833 278 L 764 272 Z"/>
-
        <path class="continent" data-region="Australia" d="
          M 814 311 L 847 289 L 875 292 L 903 300 L 925 328 L 925 356 L 911 369
          L 889 356 L 861 339 L 819 347 L 814 333 Z"/>
-
        <path class="continent" data-region="New Zealand" d="
          M 978 347 L 994 356 L 992 375 L 972 378 L 964 372 L 972 361 Z
          M 978 364 L 986 369 L 972 381 L 964 378 Z"/>
       </g>
 
-      <!-- ============ HIGHLIGHTED TARGET COUNTRIES ============ -->
       <g class="targets">
-       <!-- Canada — placed up top, spanning wide -->
        <path class="target-country" data-country="Canada"
              d="M 250 70 L 345 65 L 350 105 L 255 110 Z"
              style="animation-delay:.4s"/>
-       <!-- USA — placed lower-left, distinct from Canada -->
        <path class="target-country" data-country="USA"
              d="M 195 128 L 285 122 L 295 162 L 250 182 L 205 172 Z"
              style="animation-delay:.1s"/>
-       <!-- UK -->
        <path class="target-country" data-country="UK"
              d="M 487 100 L 500 96 L 505 110 L 495 118 L 487 112 Z"
              style="animation-delay:.7s"/>
-       <!-- Australia -->
        <path class="target-country" data-country="Australia"
              d="M 830 300 L 920 300 L 925 355 L 830 355 Z"
              style="animation-delay:1s"/>
-       <!-- New Zealand -->
        <path class="target-country" data-country="New Zealand"
              d="M 968 350 L 990 350 L 992 378 L 968 378 Z"
              style="animation-delay:1.3s"/>
       </g>
 
-      <!-- ============ FLIGHT ARCS ============ -->
       <g class="arcs">
        <path class="flight-arc" d="M 715 170 Q 480 40 250 158"/>
        <path class="flight-arc" d="M 715 170 Q 495 5 305 100" style="animation-delay:.2s"/>
@@ -785,7 +819,6 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
        <path class="flight-arc" d="M 715 170 Q 610 50 500 107" style="animation-delay:.8s"/>
       </g>
 
-      <!-- ============ ORIGIN: INDIA ============ -->
       <g class="origin">
        <circle class="origin-outer" cx="715" cy="170" r="14"/>
        <circle class="origin-mid" cx="715" cy="170" r="7" filter="url(#glowOrigin)"/>
@@ -793,41 +826,31 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
        <text class="origin-label" x="715" y="150">INDIA</text>
       </g>
 
-      <!-- ============ DESTINATION MARKERS ============ -->
       <g class="markers">
-       <!-- USA — label BELOW the dot to avoid Canada text -->
        <g class="marker" data-country="USA" data-card="card-usa" tabindex="0" role="button"
           aria-label="USA — view destination card">
         <circle class="ring" cx="250" cy="158" r="8"/>
         <circle class="dot" cx="250" cy="158" r="5" filter="url(#glowMarker)"/>
         <text class="label" x="250" y="178" style="dominant-baseline:hanging">USA</text>
        </g>
-
-       <!-- Canada — label ABOVE the dot, positioned farther up and east -->
        <g class="marker" data-country="Canada" data-card="card-ca" tabindex="0" role="button"
           aria-label="Canada — view destination card">
         <circle class="ring" cx="305" cy="100" r="8" style="animation-delay:.3s"/>
         <circle class="dot" cx="305" cy="100" r="5" filter="url(#glowMarker)"/>
         <text class="label" x="305" y="84">CANADA</text>
        </g>
-
-       <!-- UK -->
        <g class="marker" data-country="UK" data-card="card-uk" tabindex="0" role="button"
           aria-label="United Kingdom — view destination card">
         <circle class="ring" cx="500" cy="107" r="8" style="animation-delay:.6s"/>
         <circle class="dot" cx="500" cy="107" r="5" filter="url(#glowMarker)"/>
         <text class="label" x="500" y="93">UK</text>
        </g>
-
-       <!-- Australia -->
        <g class="marker" data-country="Australia" data-card="card-au" tabindex="0" role="button"
           aria-label="Australia — view destination card">
         <circle class="ring" cx="914" cy="348" r="8" style="animation-delay:.9s"/>
         <circle class="dot" cx="914" cy="348" r="5" filter="url(#glowMarker)"/>
         <text class="label" x="914" y="334">AUSTRALIA</text>
        </g>
-
-       <!-- New Zealand -->
        <g class="marker" data-country="New Zealand" data-card="card-nz" tabindex="0" role="button"
           aria-label="New Zealand — view destination card">
         <circle class="ring" cx="986" cy="365" r="8" style="animation-delay:1.2s"/>
@@ -836,7 +859,6 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
        </g>
       </g>
 
-      <!-- ============ AIRPLANES ============ -->
       <g class="planes">
        <g class="plane-icon"><path d="M -9 -2.6 L 9 0 L -9 2.6 L -5 0 Z" fill="#fff"/>
         <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" begin="0s">
@@ -862,6 +884,7 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
      </div>
     </div>
 
+    <!-- 3D floating cards integrated with the map -->
     <div class="float-card a"><span class="dot"></span> Visa Approved!</div>
     <div class="float-card b">🌍 5 Destinations</div>
    </div>
@@ -1274,7 +1297,7 @@ const counterObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll("[data-count]").forEach(el => counterObserver.observe(el));
 
-/* 5. HERO 3D MAP TILT */
+/* 5. HERO 3D MAP TILT — rotates the map AND the floating cards together */
 const heroArt = document.getElementById("heroArt");
 const mapScene = document.getElementById("mapScene");
 if (heroArt && mapScene){
@@ -1304,10 +1327,8 @@ document.querySelectorAll(".marker").forEach(marker => {
     const cardId = marker.dataset.card;
     const card = document.getElementById(cardId);
     if (!card || !destSlider) return;
-
     const targetLeft = card.offsetLeft - destSlider.offsetLeft;
     destSlider.scrollTo({ left: targetLeft, behavior: "smooth" });
-
     const section = document.getElementById("countries");
     if (section){
       const rect = section.getBoundingClientRect();
@@ -1315,7 +1336,6 @@ document.querySelectorAll(".marker").forEach(marker => {
         section.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
-
     document.querySelectorAll(".dest-card").forEach(c => c.classList.remove("highlight"));
     card.classList.add("highlight");
     setTimeout(() => card.classList.remove("highlight"), 2200);
