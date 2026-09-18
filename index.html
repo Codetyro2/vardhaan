@@ -93,9 +93,7 @@ img{max-width:100%;display:block}
   animation:wordIn .8s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes wordIn{to{opacity:1;transform:none}}
 
-/* ============================================================
-   INTERACTIVE WORLD MAP
-============================================================ */
+/* INTERACTIVE WORLD MAP */
 .hero-art{position:relative;min-height:560px;perspective:1600px;
   perspective-origin:50% 45%}
 .map-scene{position:absolute;inset:0;transform-style:preserve-3d;
@@ -226,9 +224,7 @@ img{max-width:100%;display:block}
 .map-tooltip.show{opacity:1;transform:translateY(0)}
 
 /* ============================================================
-   FLOATING CARDS — now integrated with the 3D map
-   Positioned to overlap the map edges slightly, floating well
-   above the map surface (translateZ), and tilting with it.
+   FLOATING CARDS — tucked into the map corners
 ============================================================ */
 .float-card{
   position:absolute;
@@ -243,17 +239,17 @@ img{max-width:100%;display:block}
   will-change:transform;
   backface-visibility:hidden;
 }
-/* Card A — "Visa Approved!" — top-right, overlapping the map edge */
+/* Card A — "Visa Approved!" — overlapping the top-right map corner */
 .float-card.a{
-  right:6%;
-  top:4%;
+  right:5%;
+  top:15%;
   transform: translateZ(120px) rotateY(-10deg) rotateX(4deg);
   animation: floatA 6s ease-in-out infinite;
 }
-/* Card B — "5 Destinations" — bottom-left, overlapping the map edge */
+/* Card B — "5 Destinations" — overlapping the bottom-left map corner */
 .float-card.b{
-  left:6%;
-  bottom:4%;
+  left:5%;
+  bottom:15%;
   transform: translateZ(120px) rotateY(10deg) rotateX(-4deg);
   animation: floatB 6s ease-in-out infinite;
 }
@@ -604,8 +600,8 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
   .steps{grid-template-columns:repeat(2,1fr)}
   .stories{background-attachment:scroll}
   .float-card{font-size:11px;padding:10px 12px}
-  .float-card.a{right:2%;top:2%;transform:translateZ(80px) rotateY(-6deg)}
-  .float-card.b{left:2%;bottom:2%;transform:translateZ(80px) rotateY(6deg)}
+  .float-card.a{right:3%;top:14%;transform:translateZ(80px) rotateY(-6deg)}
+  .float-card.b{left:3%;bottom:14%;transform:translateZ(80px) rotateY(6deg)}
   @keyframes floatA{
     0%,100%{transform:translateZ(80px) rotateY(-6deg) translateY(0)}
     50%    {transform:translateZ(95px) rotateY(-6deg) translateY(-8px)}
@@ -696,7 +692,6 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
   <div class="hero-art reveal" id="heroArt" style="transition-delay:.4s">
    <div class="map-scene" id="mapScene">
 
-    <!-- Anchor shadow beneath the map -->
     <div class="map-shadow"></div>
 
     <div class="map-disc">
@@ -884,7 +879,6 @@ footer{background:#041629;color:#b8c8d8;padding:45px 0 25px}
      </div>
     </div>
 
-    <!-- 3D floating cards integrated with the map -->
     <div class="float-card a"><span class="dot"></span> Visa Approved!</div>
     <div class="float-card b">🌍 5 Destinations</div>
    </div>
@@ -1297,7 +1291,7 @@ const counterObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll("[data-count]").forEach(el => counterObserver.observe(el));
 
-/* 5. HERO 3D MAP TILT — rotates the map AND the floating cards together */
+/* 5. HERO 3D MAP TILT */
 const heroArt = document.getElementById("heroArt");
 const mapScene = document.getElementById("mapScene");
 if (heroArt && mapScene){
